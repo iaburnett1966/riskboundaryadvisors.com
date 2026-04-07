@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Risk Boundary Advisors LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #0f1117;
+      --paper:  #f7f5f0;
+      --rule:   #d0c8bc;
+      --accent: #2a4a3e;
+      --gold:   #a8895a;
+      --mid:    #5a5550;
+      --light:  #ede9e3;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(247,245,240,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      color: var(--accent);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+    .nav-links a {
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      padding: 10rem 3rem 6rem;
+      max-width: 720px;
+    }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.12;
+      margin-bottom: 1.4rem;
+    }
+
+    h1 em { font-style: italic; color: var(--accent); }
+
+    .hero-desc {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--mid);
+      max-width: 52ch;
+      line-height: 1.8;
+      margin-bottom: 2.4rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #1e3830; }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0 3rem;
+    }
+
+    /* SERVICES */
+    #services { padding: 5rem 3rem; }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2.5rem;
+    }
+
+    .services-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 1.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+    }
+
+    .service-item:first-child { border-top: 1px solid var(--rule); }
+
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      color: var(--rule);
+      padding-top: 0.2rem;
+    }
+
+    .service-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .service-desc {
+      font-size: 0.9rem;
+      color: var(--mid);
+      font-weight: 300;
+      line-height: 1.75;
+      max-width: 68ch;
+    }
+
+    /* CONTACT */
+    #contact {
+      padding: 5rem 3rem;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    #contact .section-label { color: var(--gold); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-intro {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(247,245,240,0.65);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .contact-detail { display: flex; flex-direction: column; gap: 1rem; }
+
+    .contact-row { display: flex; flex-direction: column; gap: 0.2rem; }
+
+    .contact-row-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .contact-row-val {
+      font-size: 0.92rem;
+      color: rgba(247,245,240,0.8);
+    }
+
+    .contact-row-val a {
+      color: rgba(247,245,240,0.8);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(247,245,240,0.15);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-row-val a:hover {
+      color: #fff;
+      border-color: var(--gold);
+    }
+
+    /* Form */
+    .contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .field label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(247,245,240,0.4);
+      margin-bottom: 0.4rem;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid rgba(247,245,240,0.15);
+      background: rgba(247,245,240,0.05);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--paper);
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder { color: rgba(247,245,240,0.25); }
+
+    .field select option { background: var(--ink); }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus { border-color: var(--gold); }
+
+    .field textarea { resize: vertical; min-height: 100px; }
+
+    .submit-btn {
+      align-self: flex-start;
+      padding: 0.8rem 2rem;
+      background: var(--gold);
+      color: var(--ink);
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+    .submit-btn:hover { opacity: 0.85; }
+
+    #form-success {
+      display: none;
+      font-size: 0.82rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 1.6rem 3rem;
+      background: var(--ink);
+      border-top: 1px solid rgba(247,245,240,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(247,245,240,0.3);
+    }
+
+    .footer-copy {
+      font-size: 0.7rem;
+      color: rgba(247,245,240,0.25);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      .hero { padding: 8rem 1.5rem 4rem; }
+      .divider { margin: 0 1.5rem; }
+      #services { padding: 4rem 1.5rem; }
+      #contact { padding: 4rem 1.5rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.4rem; text-align: center; padding: 1.4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Risk Boundary Advisors</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="eyebrow">GRC · Internal Audit · SOX · Controls</p>
+    <h1>Executive-Level Advisory in <em>GRC, Internal Audit, and SOX Compliance</em></h1>
+    <p class="hero-desc">
+      Risk Boundary Advisors LLC is an independent consulting practice delivering executive-level expertise in GRC, Internal Audit, SOX compliance, and Controls Optimization.
+    </p>
+    <a href="#contact" class="btn-primary">Get in Touch</a>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-label">Services</p>
+    <div class="services-list">
+      <div class="service-item">
+        <span class="service-num">01</span>
+        <div>
+          <div class="service-title">Strategic Governance Partnership</div>
+          <p class="service-desc">Working directly with C-suite executives, Internal Audit leaders, and Audit Committees to craft forward-looking strategies that align governance with organizational objectives — covering both mandatory regulatory requirements and voluntary risk boundaries.</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-num">02</span>
+        <div>
+          <div class="service-title">High-Level Risk Architecture</div>
+          <p class="service-desc">Advisory to senior leaders specializing in the design of risk-based internal control frameworks and optimization of GRC programs — building proactive, risk-aware compliance cultures that drive sustainable business performance.</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-num">03</span>
+        <div>
+          <div class="service-title">AI-Driven Hyper-Efficiency</div>
+          <p class="service-desc">Enabling agentic AI solutions to unlock hyper-efficiency in internal control assessments — maximizing budget impact, elevating team capacity, and redirecting resources toward high-value strategic activities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-intro">Available for contract, subcontract, and fractional engagements across GRC transformation, SOX advisory, internal audit strategy, and AI-enabled control programs. Open to collaborative partnerships with firms looking to expand their advisory capabilities.</p>
+        <div class="contact-detail">
+          <div class="contact-row">
+            <span class="contact-row-label">Email</span>
+            <span class="contact-row-val"><a href="/cdn-cgi/l/email-protection#0c656d624c7e657f676e637962686d7e756d687a657f637e7f226f6361"><span class="__cf_email__" data-cfemail="7019111e300219031b121f051e1411020911140619031f02035e131f1d">[email&#160;protected]</span></a></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-row-label">Phone</span>
+            <span class="contact-row-val"><a href="tel:4044494877">404-449-4877</a></span>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label for="company">Company</label>
+            <input type="text" id="company" placeholder="Your organization" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="you@company.com" required />
+        </div>
+        <div class="field">
+          <label for="interest">Area of Interest</label>
+          <select id="interest">
+            <option value="">Select…</option>
+            <option>Strategic Governance</option>
+            <option>Risk Architecture</option>
+            <option>AI-Driven Efficiency</option>
+            <option>SOX / ICFR Advisory</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Briefly describe your needs…"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message →</button>
+        <div id="form-success">✓ Message received — I'll be in touch shortly.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">Risk Boundary Advisors LLC</span>
+    <span class="footer-copy">© 2025 Risk Boundary Advisors LLC · All Rights Reserved</span>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi
